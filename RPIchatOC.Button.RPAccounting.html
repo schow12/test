@@ -49,6 +49,19 @@ embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 embedded_svc.settings.entryFeature = 'LiveAgent';
 
+// add here after the entryfeature test
+// override:  preset proudct center for dependent picklist Program__c
+//            preset name and email for temporary testing.  onsite developer to pass in the info later.  9.7.18 12:42pm
+embedded_svc.settings.prepopulatedPrechatFields = {
+    Product_Center__c: "OneSite Accounting",
+    FirstName: “Bobby”,
+    LastName: “Brown”,
+    Email: “bb@osmail.com”    
+};
+	
+	
+	
+	
 // override: preset case origin to Chat
 embedded_svc.settings.extraPrechatFormDetails = [
 	{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true}]; 
