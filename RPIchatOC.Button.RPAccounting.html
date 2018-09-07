@@ -41,6 +41,16 @@ embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 // Returns a valid button ID.
 //};
 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+// override:  preset proudct center for dependent picklist Program__c
+//            preset name and email for temporary testing.  onsite developer to pass in the info later.  9.7.18 12:42pm
+embedded_svc.settings.prepopulatedPrechatFields = {
+    Product_Center__c: "OneSite Accounting",
+    FirstName: “Bobby”,
+    LastName: “Brown”,
+    Email: “bb@osmail.com”    
+};
+	
+	
 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
 //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
