@@ -38,6 +38,13 @@ embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
 // Returns a valid button ID.
 //};
+
+// override:  Route to commercial agents when customer pick Commercial Product
+	embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+	if (prechatFormData[4].value === "NOT RP Accounting") 
+		return "5731b000000CaTw";    //button id is in org: RPIchatOC  RPCommercial Button
+ 	}
+	
 //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
 //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
 //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
