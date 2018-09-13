@@ -55,10 +55,8 @@ embedded_svc.settings.prepopulatedPrechatFields = {
 };
 // override: preset case origin to Chat
 embedded_svc.settings.extraPrechatFormDetails = [
-	{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true},
-        {"label":"webOrigin","value":"Chat: OneSite Accounting","transcriptFields":[],"displayToAgent":true}
-
-]; 
+	{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true}
+	]; 
 	
 // override: match email on contact, fieldmap case origin, web origin
 embedded_svc.settings.extraPrechatInfo = [
@@ -67,8 +65,7 @@ embedded_svc.settings.extraPrechatInfo = [
 	{"isExactMatch":false,"fieldName":"LastName","doCreate":true,"doFind":false,"label":"Last Name"},
 	{"isExactMatch":true,"fieldName":"Email","doCreate":true,"doFind":true,"label":"Email"}]},
 	{"entityName":"Case","showOnCreate":true, "saveToTranscript":"Case", "entityFieldMaps":[
-		{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}
-		{"isExactMatch":false,"fieldName":"Screen_ID_or_Report_ID__c","doCreate":true,"doFind":false,"label":"webOrigin"}
+		{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}		
 		]
 	}
 ]
