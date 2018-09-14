@@ -4,21 +4,18 @@
     <h1>test Live Agent Chat</h1>
     <h2>You are connecting to org: RPIchatOC sandbox Button: RPAccounting (snap-ins: LightningChat, with custom component).</h2></p>	
 	<p>SupportDeployment Site Endpoint:Customer_Portal&nbsp;</p>
-<!--    <p>Go to <a href="RPIchatOCpage2">RPIchatOC - Page 2</a></p>  -->
-
 	<p>Go <a href="https://schow12.github.io/testChat">home  (PWBusiness Page 1)</a></p>
 
 
-<!--  9.11.2018  org: RPIchatOC  Snap-in: LightningChat Deployment: RPAccounting Start here  --> 
-
+<!--  9.14.2018  org: RPIchatOC Snap-in: LightningChat Deployment: RPAccounting Start here  --> 
 
 <style type='text/css'>
 	.embeddedServiceHelpButton .helpButton .uiButton {
-		background-color: #005290;
+		background-color: #7697B1;
 		font-family: "Salesforce Sans", sans-serif;
 	}
 	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-		outline: 1px solid #005290;
+		outline: 1px solid #7697B1;
 	}
 	@font-face {
 		font-family: 'Salesforce Sans';
@@ -29,77 +26,73 @@
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
-var initESW = function(gslbBaseURL) {
-	embedded_svc.settings.displayHelpButton = true; //Or false
-	embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = true; //Or false
+		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
-	//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-	//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
 
-	//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-	//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
 
-	//  Pre-populate for prechat form.  >> Replace hard code with logged in user data
-	//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-	embedded_svc.settings.prepopulatedPrechatFields = {
-	    FirstName: "Apple",
-	    LastName: "Bee",
-	    Email: "AB@osmail.com"
-	};
-
-
-	// Settings for Live Agent
-	//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-		// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-		// Returns a valid button ID.
-	//};
-
-	// override:  Route to commercial agents when customer pick Commercial Product 
-	//                >> after Ashok replace hard coded user data, shirley to remove the name and email
-	//                >> ashok to change array to [0] 
-	embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-		if (prechatFormData[3].value === "RealPage Commercial Property Management") 
-			return "5731b000000CaTwAAK";    //button id is in org: RPIchatOC  RPCommercial Button
+		// Settings for Live Agent
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		// override:  Route to commercial agents when customer pick Commercial Product
+		embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			if (prechatFormData[3].value === "RealPage Commercial Property Management") 
+				return "5731b000000CaTwAAK";    //button id is in org: RPIchatOC  RPCommercial Button
+			};
+	
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//  Pre-populate for prechat form.  Replace hard code with logged in user data
+		embedded_svc.settings.prepopulatedPrechatFields = {
+			FirstName: "Apple",
+			LastName: "Bee",
+			Email: "AB@osmail.com"
 		};
-
-
-	// override: preset case origin to Chat
-	embedded_svc.settings.extraPrechatFormDetails = [
-		{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true}]; 
-
-
-	// override: match email on contact, fieldmap origin 
-	embedded_svc.settings.extraPrechatInfo = [
-		{"entityName":"Contact","showOnCreate":true,"linkToEntityName":"Case","linkToEntityField":"ContactId","saveToTranscript":"Contact","entityFieldMaps":[
-		{"isExactMatch":false,"fieldName":"FirstName","doCreate":true,"doFind":false,"label":"First Name"},
-		{"isExactMatch":false,"fieldName":"LastName","doCreate":true,"doFind":false,"label":"Last Name"},
-		{"isExactMatch":true,"fieldName":"Email","doCreate":true,"doFind":true,"label":"Email"}]},
-		{"entityName":"Case","showOnCreate":true, "saveToTranscript":"Case", "entityFieldMaps":[
-			{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}]}
+		
+		
+		embedded_svc.settings.extraPrechatFormDetails = [
+			{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true}]; 
+	
+	
+		// override: match email on contact, fieldmap case origin, web origin
+		embedded_svc.settings.extraPrechatInfo = [
+			{"entityName":"Contact","showOnCreate":true,"linkToEntityName":"Case","linkToEntityField":"ContactId","saveToTranscript":"Contact","entityFieldMaps":[
+			{"isExactMatch":false,"fieldName":"FirstName","doCreate":true,"doFind":false,"label":"First Name"},
+			{"isExactMatch":false,"fieldName":"LastName","doCreate":true,"doFind":false,"label":"Last Name"},
+			{"isExactMatch":true,"fieldName":"Email","doCreate":true,"doFind":true,"label":"Email"}]},
+			{"entityName":"Case","showOnCreate":true, "saveToTranscript":"Case", "entityFieldMaps":[
+				{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}]}
 		]
 
-	//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-	//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
-	embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-	embedded_svc.settings.entryFeature = 'LiveAgent';
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
-	embedded_svc.init(
-		'https://cs25.salesforce.com',
-		'https://rpichatoc-realpage.cs25.force.com/cportal',
-		gslbBaseURL,
-		'00D1b000000DQ0I',
-		'LightningChat',
-		{
-			baseLiveAgentContentURL: 'https://c.la4-c2cs-dfw.salesforceliveagent.com/content',
-			deploymentId: '5721b000000CaSP',
-			buttonId: '5731b000000CaTr',
-			baseLiveAgentURL: 'https://d.la4-c2cs-dfw.salesforceliveagent.com/chat',
-			eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1b0000008OIUEA2_165c48b73e2',
-			isOfflineSupportEnabled: false
-		}
-	);
-};
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			'https://cs25.salesforce.com',
+			'https://rpichatoc-realpage.cs25.force.com/cportal',
+			gslbBaseURL,
+			'00D1b000000DQ0I',
+			'LightningChat',
+			{
+				baseLiveAgentContentURL: 'https://c.la4-c2cs-dfw.salesforceliveagent.com/content',
+				deploymentId: '5721b000000CaSP',
+				buttonId: '5731b000000CaTr',
+				baseLiveAgentURL: 'https://d.la4-c2cs-dfw.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1b0000008OIUEA2_165c48b73e2',
+				isOfflineSupportEnabled: false
+			}
+		);
+	};
 
 	if (!window.embedded_svc) {
 		var s = document.createElement('script');
@@ -112,6 +105,8 @@ var initESW = function(gslbBaseURL) {
 		initESW('https://service.force.com');
 	}
 </script>
+	
+	
 	
 
 <!--  Snap-in: LightningChat Code Snippet End here  --> 
