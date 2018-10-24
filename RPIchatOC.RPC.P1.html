@@ -11,7 +11,7 @@
 			
 			
 			
-<!---  10.22.2018 Sandbox: RPIchatOC  Snap-in: PS-RPC -->
+<!---  10.24.2018 Sandbox: RPIchatOC  Snap-in: PS-RPC  -->
 
 <style type='text/css'>
 	.embeddedServiceHelpButton .helpButton .uiButton {
@@ -34,11 +34,11 @@
 		embedded_svc.settings.displayHelpButton = true; //Or false
 		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
+
 		// -->> override start.  Place this section after the "embedded_svc.settings.language" statement
 
 
-		
-		//  Replace hard code with logged in user data
+		//  Pre-populate for prechat form.  Replace hard code with logged in user data
 		embedded_svc.settings.prepopulatedPrechatFields = {
 			FirstName: "Apple",
 			LastName: "Bee",
@@ -64,7 +64,7 @@
 		]	
 
 		// -->> override end
-
+		
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 		embedded_svc.settings.entryFeature = 'LiveAgent';
 
@@ -97,7 +97,7 @@
 	}
 </script>
 
-
+	
 			
 
 <!--  snapin  End here  --> 
