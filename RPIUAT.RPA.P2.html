@@ -9,7 +9,7 @@
 
 	
 <!--  10.2.2018 snapin org: RPIUAT | snap-in: PS_RPA  --> 
-
+<!--  11.26.2018 snapin org: RPIUAT | snap-in: PS_RPA   redesign R20 --> 
 
 
 
@@ -37,10 +37,7 @@
 		
 		// ----- override start
 		// override:  Route to commercial agents when customer pick Commercial Product
-		embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-			if (prechatFormData[3].value === "RealPage Commercial Property Management") 
-				return "5730n00000000cR";    //button id is in org: RPIUAT  RPCommercial Button
-			};
+		
 		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
 		//  Pre-populate for prechat form.  Replace hard code with logged in user data
 		embedded_svc.settings.prepopulatedPrechatFields = {
@@ -62,6 +59,7 @@
 				{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}]}
 		]	
 		// ----- override end
+		
 		
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 		embedded_svc.settings.entryFeature = 'LiveAgent';
@@ -94,8 +92,6 @@
 		initESW('https://service.force.com');
 	}
 </script>
-	
-	
 
 
 <!--  snapin  End here  --> 
