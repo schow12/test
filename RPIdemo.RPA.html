@@ -13,42 +13,42 @@
 	<!--  2.18.2019 snapin org: RPIdemo | snap-in: PS_RPA  --> 
 
 	<!--org: RPI Demo -->
-		<style type='text/css'>
-			.embeddedServiceHelpButton .helpButton .uiButton {
-				background-color: #777776;
-				font-family: "Salesforce Sans", sans-serif;
-			}
-			.embeddedServiceHelpButton .helpButton .uiButton:focus {
-				outline: 1px solid #777776;
-			}
-			@font-face {
-				font-family: 'Salesforce Sans';
-				src: url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.woff') format('woff'),
-				url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.ttf') format('truetype');
-			}
-		</style>
+	<style type='text/css'>
+		.embeddedServiceHelpButton .helpButton .uiButton {
+			background-color: #777776;
+			font-family: "Salesforce Sans", sans-serif;
+		}
+		.embeddedServiceHelpButton .helpButton .uiButton:focus {
+			outline: 1px solid #777776;
+		}
+		@font-face {
+			font-family: 'Salesforce Sans';
+			src: url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.woff') format('woff'),
+			url('https://www.sfdcstatic.com/system/shared/common/assets/fonts/SalesforceSans/SalesforceSans-Regular.ttf') format('truetype');
+		}
+	</style>
 
-		<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-		<script type='text/javascript'>
+	<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+	<script type='text/javascript'>
 		var initESW = function(gslbBaseURL) {
 			embedded_svc.settings.displayHelpButton = true; //Or false
 			embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
 			
 		// ----- override start
-			
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
 		//  Pre-populate for prechat form.  Replace hard code with logged in user data
 		embedded_svc.settings.prepopulatedPrechatFields = {
 			FirstName: "Apple",
 			LastName: "Bee",
 			Email: "AB@osmail.com"
 		};
-
 		embedded_svc.settings.extraPrechatFormDetails = [
 			{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true},
-			{"label":"chatProduct","value":"RealPage Accounting","transcriptFields":[],"displayToAgent":true}  //put value "RealPage Commercial Property Management" for Commercial product button
+			{"label":"chatProduct","value":"RealPage Accounting","transcriptFields":[],"displayToAgent":true}  
 			]; 
-
-
+			
+			
 		// override: match email on contact, fieldmap case origin, web origin
 		embedded_svc.settings.extraPrechatInfo = [
 			{"entityName":"Contact","showOnCreate":true,"linkToEntityName":"Case","linkToEntityField":"ContactId","saveToTranscript":"Contact","entityFieldMaps":[
@@ -57,13 +57,12 @@
 			{"isExactMatch":true,"fieldName":"Email","doCreate":true,"doFind":true,"label":"Email"}]},
 			{"entityName":"Case","showOnCreate":true, "saveToTranscript":"Case", "entityFieldMaps":[
 				{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"},
-				{"isExactMatch":false,"fieldName":"Program__c","doCreate":true,"doFind":false,"label":"chatProduct"}
+				{"isExactMatch":false,"fieldName":"Program__c","doCreate":true,"doFind":false,"label":"chatProduct"}	
 				]}
 		]	
-
-		
 		// ----- override end
-		
+
+
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 		embedded_svc.settings.entryFeature = 'LiveAgent';
 
@@ -78,7 +77,7 @@
 				deploymentId: '5721G0000008SO4',
 				buttonId: '5731G0000008SlB',
 				baseLiveAgentURL: 'https://d.la1-c2cs-ia2.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1G000000000kUAA_168350eefc2',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I55000000CaS0EAK_169024f97a4',
 				isOfflineSupportEnabled: false
 			}
 		);
@@ -95,6 +94,7 @@
 		initESW('https://service.force.com');
 	}
 </script>
+
 
 <!--  snapin  End here  --> 
 
