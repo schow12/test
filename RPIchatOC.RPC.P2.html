@@ -12,6 +12,7 @@
 
 
 <!---  10.24.2018 Sandbox: RPIchatOC  Snap-in: PS-RPC  -->
+<!---  07/09.2019 Summer 19 - added disableKeyTrapping line 68 --->
 
 <style type='text/css'>
 	.embeddedServiceHelpButton .helpButton .uiButton {
@@ -64,6 +65,7 @@
 		]	
 
 		// -->> override end
+		embedded_svc.settings.disableKeyTrapping = true;  //summer 19
 		
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 		embedded_svc.settings.entryFeature = 'LiveAgent';
