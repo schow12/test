@@ -4,12 +4,12 @@
     <h1>test Live Agent Chat - Realpage OneSite Accounting [Page 2]</h1>
     <p>You are connecting to org: RPIUAT | snap-in: PS_RPA</p>	
 	<p> <A HREF="RPIUAT.RPA.P1.html"> org: RPIUAT | RealPage Accounting Page 1 </A></p>
-	<!-- <p>Go <a href="https://schow12.github.io/testChat">home [ PWBusiness Page 1]</a></p> -->
+	<p>Go <a href="https://schow12.github.io/testChat">home -- PWBusiness Page 1</a></p>
 
 
 	
 <!--  10.2.2018 snapin org: RPIUAT | snap-in: PS_RPA  --> 
-<!--  11.26.2018 snapin org: RPIUAT | snap-in: PS_RPA   redesign R20 --> 
+<!-- Org: RPIUat 9:50 AM 12/20/2019 -->
 
 
 
@@ -37,7 +37,10 @@
 		
 		// ----- override start
 		// override:  Route to commercial agents when customer pick Commercial Product
-		
+		embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			if (prechatFormData[3].value === "RealPage Commercial Property Management") 
+				return "5730n00000000cR";    //button id is in org: RPIUAT  RPCommercial Button
+			};
 		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
 		//  Pre-populate for prechat form.  Replace hard code with logged in user data
 		embedded_svc.settings.prepopulatedPrechatFields = {
@@ -45,11 +48,9 @@
 			LastName: "Bee",
 			Email: "AB@osmail.com"
 		};
-
 		embedded_svc.settings.extraPrechatFormDetails = [
-			{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true},
-			{"label":"chatProduct","value":"RealPage Accounting","transcriptFields":[],"displayToAgent":true}  
-			]; 	
+			{"label":"chatOrigin","value":"Chat","transcriptFields":[],"displayToAgent":true}]; 
+			
 			
 		// override: match email on contact, fieldmap case origin, web origin
 		embedded_svc.settings.extraPrechatInfo = [
@@ -58,28 +59,25 @@
 			{"isExactMatch":false,"fieldName":"LastName","doCreate":true,"doFind":false,"label":"Last Name"},
 			{"isExactMatch":true,"fieldName":"Email","doCreate":true,"doFind":true,"label":"Email"}]},
 			{"entityName":"Case","showOnCreate":true, "saveToTranscript":"Case", "entityFieldMaps":[
-				{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"},
-				{"isExactMatch":false,"fieldName":"Program__c","doCreate":true,"doFind":false,"label":"chatProduct"}	
-				]}
+				{"isExactMatch":false,"fieldName":"Origin","doCreate":true,"doFind":false,"label":"chatOrigin"}]}
 		]	
 		// ----- override end
-		
 		
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
 		embedded_svc.settings.entryFeature = 'LiveAgent';
 
 		embedded_svc.init(
-			'https://cs67.salesforce.com',
-			'https://rpiuat-realpage.cs67.force.com/cportal',
+			'https://realpage--RPIUAT.cs78.my.salesforce.com',
+			'https://rpiuat-realpage.cs78.force.com/cportal',
 			gslbBaseURL,
-			'00D0n0000000WHC',
+			'00D1k0000009bro',
 			'PS_RPA',
 			{
-				baseLiveAgentContentURL: 'https://c.la1-c2cs-iad.salesforceliveagent.com/content',
-				deploymentId: '5720n000000005k',
-				buttonId: '5730n00000000cQ',
-				baseLiveAgentURL: 'https://d.la1-c2cs-iad.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I0n000000002CEAQ_16635fc488b',
+				baseLiveAgentContentURL: 'https://c.la2-c2cs-iad.salesforceliveagent.com/content',
+				deploymentId: '5721G0000008SO4',
+				buttonId: '5731G0000008SlB',
+				baseLiveAgentURL: 'https://d.la2-c2cs-iad.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I1G000000000kUAA_168350eefc2',
 				isOfflineSupportEnabled: false
 			}
 		);
@@ -87,7 +85,7 @@
 
 	if (!window.embedded_svc) {
 		var s = document.createElement('script');
-		s.setAttribute('src', 'https://cs67.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.setAttribute('src', 'https://realpage--RPIUAT.cs78.my.salesforce.com/embeddedservice/5.0/esw.min.js');
 		s.onload = function() {
 			initESW(null);
 		};
@@ -96,6 +94,8 @@
 		initESW('https://service.force.com');
 	}
 </script>
+	
+	
 
 
 <!--  snapin  End here  --> 
